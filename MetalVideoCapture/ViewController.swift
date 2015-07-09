@@ -80,20 +80,12 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
         
         metalView.framebufferOnly = false
 
-        // Texture for luma
-
-        let yDescriptor = MTLTextureDescriptor.texture2DDescriptorWithPixelFormat(MTLPixelFormat.R8Unorm,
-            width: 1024, height: 768, mipmapped: false)
-        let _ = device.newTextureWithDescriptor(yDescriptor)
+        // Texture for Y
         
         CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &videoTextureCache)
         
         // Texture for CbCr
-        
-        let cbcrDescriptor = MTLTextureDescriptor.texture2DDescriptorWithPixelFormat(MTLPixelFormat.RG8Unorm,
-            width: 1024, height: 768, mipmapped: false)
-        let _ = device.newTextureWithDescriptor(cbcrDescriptor)
-        
+    
         CVMetalTextureCacheCreate(kCFAllocatorDefault, nil, device, nil, &videoTextureCache)
     }
   
