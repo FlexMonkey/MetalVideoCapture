@@ -162,11 +162,9 @@ class VideoMetalView: MTKView
     
     var blur: MPSImageGaussianBlur!
     
-    override init(frame: CGRect)
+    required init(frame: CGRect)
     {
-        super.init(frame: frame)
-        
-        device = MTLCreateSystemDefaultDevice()
+        super.init(frame: frame, device:  MTLCreateSystemDefaultDevice())
         
         defaultLibrary = device!.newDefaultLibrary()!
         commandQueue = device!.newCommandQueue()
@@ -188,10 +186,12 @@ class VideoMetalView: MTKView
         blur = MPSImageGaussianBlur(device: device!, sigma: 0)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required init(coder: NSCoder)
+    {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+
     func addTextures(yTexture ytexture:MTLTexture, cbcrTexture: MTLTexture)
     {
         self.ytexture = ytexture
