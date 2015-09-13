@@ -139,7 +139,9 @@ class ViewController: UIViewController, AVCaptureVideoDataOutputSampleBufferDele
     
     override func viewDidLayoutSubviews()
     {
-        metalView.frame = CGRect(x: 0, y: 0, width: 1024, height: 768)
+        metalView.frame = view.bounds
+        
+        metalView.drawableSize = CGSize(width: view.bounds.width * 2, height: view.bounds.height * 2)
         
         blurSlider.frame = CGRect(x: 20,
             y: view.frame.height - blurSlider.intrinsicContentSize().height - 20,
